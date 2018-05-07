@@ -2,7 +2,8 @@ class TaskList < ApplicationRecord
   belongs_to :user
 
   enum status: [ :closed, :open ]
-  enum state: [ :not_favorited, :favorited ]
+
+  accepts_nested_attributes_for :tasks
 
   has_many :tasks
 end
