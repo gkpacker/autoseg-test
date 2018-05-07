@@ -1,5 +1,5 @@
 class TaskListsController < ApplicationController
-  before_action :set_task_list, only: :show
+  before_action :set_task_list, only: [:show, :edit, :update, :destroy]
 
   def index
     @task_lists = TaskList.all
@@ -23,6 +23,23 @@ class TaskListsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+
+  def update
+    if @task_list.update_attributes(allowed_params)
+      redirect_to @task_list, notice: 'Successfully updated task_list'
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @task_list.destroy
+    redirect_to root_path
+  end
+
   private
 
   def set_task_list
@@ -30,6 +47,6 @@ class TaskListsController < ApplicationController
   end
 
   def task_list_params
-    params.require(:task_list).permit(:user_id, :status)
+    params.require(:task_list).permit(:user_id, :status, tasks_attributes: [:title, :_destroy])
   end
 end
