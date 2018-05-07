@@ -11,6 +11,13 @@ RSpec.describe TaskList, type: :model do
     expect(TaskList.new(user_id: user.id)).to be_valid
   end
 
+  it "should have 'open' status when creating a new task list with open value" do
+    user = User.create!(email: "test@test.com", password: "123456")
+    task_list = TaskList.create!(user_id: user.id, status: 'open')
+
+    expect(task_list.open?).to eq true
+  end
+
   it "should set 'open' to false when creating a new task list" do
     user = User.create!(email: "test@test.com", password: "123456")
     task_list = TaskList.create!(user_id: user.id)
@@ -24,6 +31,21 @@ RSpec.describe TaskList, type: :model do
     task_list.open!
 
     expect(task_list.open?).to eq true
+  end
+
+  it "should set 'favorited' to false when creating a new task list" do
+    user = User.create!(email: "test@test.com", password: "123456")
+    task_list = TaskList.create!(user_id: user.id)
+
+    expect(task_list.favorited?).to eq false
+  end
+
+  it "should change task list 'favorited' status" do
+    user = User.create!(email: "test@test.com", password: "123456")
+    task_list = TaskList.create!(user_id: user.id)
+    task_list.favorited!
+
+    expect(task_list.favorited?).to eq true
   end
 
 end
