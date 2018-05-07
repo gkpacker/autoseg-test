@@ -1,5 +1,11 @@
 class TaskListsController < ApplicationController
+  before_action :set_task_list, only: :show
+
   def index
+    @task_lists = TaskList.all
+  end
+
+  def show
   end
 
   def new
@@ -16,6 +22,10 @@ class TaskListsController < ApplicationController
   end
 
   private
+
+  def set_task_list
+    @task_list = TaskList.find(params[:id])
+  end
 
   def task_list_params
     params.require(:task_list).permit(:user_id, :status)
