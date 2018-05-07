@@ -1,0 +1,2 @@
+class FavoritedTaskList < ApplicationRecord
+end

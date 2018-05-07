@@ -32,20 +32,4 @@ RSpec.describe TaskList, type: :model do
 
     expect(task_list.open?).to eq true
   end
-
-  it "should set 'favorited' to false when creating a new task list" do
-    user = User.create!(email: "test@test.com", password: "123456")
-    task_list = TaskList.create!(user_id: user.id)
-
-    expect(task_list.favorited?).to eq false
-  end
-
-  it "should change task list 'favorited' status" do
-    user = User.create!(email: "test@test.com", password: "123456")
-    task_list = TaskList.create!(user_id: user.id)
-    task_list.favorited!
-
-    expect(task_list.favorited?).to eq true
-  end
-
 end
