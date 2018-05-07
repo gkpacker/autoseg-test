@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_07_160621) do
+ActiveRecord::Schema.define(version: 2018_05_07_172401) do
 
   create_table "subtasks", force: :cascade do |t|
     t.string "title"
     t.integer "task_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "status", default: 0
     t.index ["task_id"], name: "index_subtasks_on_task_id"
   end
 
@@ -24,6 +25,7 @@ ActiveRecord::Schema.define(version: 2018_05_07_160621) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "status", default: 0
     t.index ["user_id"], name: "index_task_lists_on_user_id"
   end
 
@@ -32,6 +34,7 @@ ActiveRecord::Schema.define(version: 2018_05_07_160621) do
     t.integer "task_list_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "status", default: 0
     t.index ["task_list_id"], name: "index_tasks_on_task_list_id"
   end
 
