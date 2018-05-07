@@ -14,6 +14,8 @@ class TaskListsController < ApplicationController
 
   def create
     @task_list = TaskList.new(task_list_params)
+    @task_list.user = current_user
+
     if @task_list.save
       redirect_to @task_list
     else
