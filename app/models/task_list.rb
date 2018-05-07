@@ -3,7 +3,7 @@ class TaskList < ApplicationRecord
 
   enum status: [ :closed, :open ]
 
-  accepts_nested_attributes_for :tasks
-
   has_many :tasks
+
+  accepts_nested_attributes_for :tasks
 end

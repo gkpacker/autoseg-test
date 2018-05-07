@@ -8,6 +8,11 @@ class TaskListsController < ApplicationController
 
   def create
     @task_list = TaskList.new(task_list_params)
+    if @task_list.save
+      redirect_to @task_list
+    else
+      render :new
+    end
   end
 
   private
