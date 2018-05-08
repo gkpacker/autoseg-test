@@ -3,7 +3,6 @@ class TaskListsController < ApplicationController
 
   def index
     @task_lists = TaskList.where(status: 'open')
-    @favorited_task_list = FavoritedTaskList.new
   end
 
   def show

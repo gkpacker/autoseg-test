@@ -1,17 +1,24 @@
 class FavoritedTaskListsController < ApplicationController
+  before_action :set_task_list, only: :update_favorited_task_list
+
   def index
     @favorited_task_lists = FavoritedTaskList.where(user_id: current_user.id)
   end
 
-  def create
-    favorited = FavoritedTaskList.new(favorited_task_lists_params)
-    favorited.user = current_user
-    favorited.save
+  def update_favorited_task_list
+    @favorited_task_list = current_user.favorited_task_list(@task_list)
+    if @favorited_task_list
+      @favorited_task_list.destroy
+    else
+      @favorited_task_list = FavoritedTaskList.new(task_list: @task_list)
+      @favorited_task_list.user = current_user
+      @favorited_task_list.save
+    end
   end
 
   private
 
-  def favorited_task_lists_params
-    params.require(:favorited_task_list).permit(:task_list_id)
+  def set_task_list
+    @task_list = TaskList.find(params[:task_list_id])
   end
 end

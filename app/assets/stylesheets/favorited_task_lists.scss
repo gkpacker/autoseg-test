@@ -1,6 +1,32 @@
 // Place all the styles related to the favorited_task_lists controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.add-favorites:hover {
+.favorited {
   color: red;
+}
+
+.favorited_task_list-box {
+  position: absolute;
+  bottom: 3px;
+  right: 5%;
+  display: block;
+  float: right;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+
+.favorited_task_list-box .favorited i {
+  color: $red;
+  opacity: 1;
+  font-weight: bold;
+}
+
+.favorited_task_list-box i {
+  opacity: 0.6;
+  color: lightgrey;
+  font-weight: lighter;
+  &:hover {
+    opacity: 1;
+  }
 }

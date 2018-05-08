@@ -22,10 +22,15 @@
             </div>
           <% end %>
           <div class="task-list-footer">
-            <%= form_for @favorited_task_list do |f| %>
-              <%= f.hidden_field :task_list_id, value: task_list.id %>
-              <%= button_tag "", type: 'submit', class: "btn btn-block btn-success add-favorites glyphicon glyphicon-heart pull-right" %>
-            <% end %>
+
+            <div class="favorited_task_list-box">
+              <% if current_user.favorited?(task_list) %>
+                <%= link_to '<i class="glyphicon glyphicon-heart" aria-hidden="true" style="font-size: 20px;" ></i>'.html_safe, task_list_favorited_task_lists_path(task_list), remote: true, id: "favorited_task_list#{task_list.id}", class: 'favorited' %>
+              <% else %>
+                <%= link_to '<i class="glyphicon glyphicon-heart" aria-hidden="true" style="font-size: 20px;"></i>'.html_safe, task_list_favorited_task_lists_path(task_list), remote: true, id: "favorited_task_list#{task_list.id}" %>
+              <% end %>
+            </div>
+
           </div>
         </div>
       <% end %>
