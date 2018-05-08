@@ -1,5 +1,12 @@
 <div class="container">
+  <%= @task_list.tasks.count %>
   <% @task_list.tasks.each do |task| %>
-    <p><%= task.title %></p>
+    <div class="task_card">
+      <p><%= task.title %></p>
+      <div class="task_links">
+        <%= link_to '<span class="glyphicon glyphicon-edit"></span>'.html_safe,edit_task_path(task) %>
+        <%= link_to '<span class="glyphicon glyphicon-trash"></span>'.html_safe, task_path(task), method: :delete %>
+      </div>
+    </div>
   <% end %>
 </div>

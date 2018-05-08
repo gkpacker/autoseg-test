@@ -4,9 +4,5 @@ class TaskList < ApplicationRecord
 
   enum status: [ :closed, :open ]
 
-  accepts_nested_attributes_for :tasks, allow_destroy: true, reject_if: :no_title
-
-  def no_title(attributes)
-    attributes[:title].blank?
-  end
+  accepts_nested_attributes_for :tasks, allow_destroy: true
 end
