@@ -14,17 +14,14 @@
   .form-control {
     width: 80%;
   }
-  span {
+  .glyphicon {
     margin-right: 13px;
     color: rgb(200, 200, 200);
-    &:hover {
-      color: red;
-    }
   }
-}
-
-.task-card {
-  .task-links{
-
+  .glyphicon-trash:hover {
+      color: red;
+  }
+  .glyphicon-ok:hover {
+      color: green;
   }
 }
