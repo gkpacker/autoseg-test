@@ -19,7 +19,7 @@ class TaskListsController < ApplicationController
     if @task_list.save
       redirect_to @task_list
     else
-      flash.now[:alert] = "Você deve nomear todas as tarefas"
+      flash.now[:alert] = "Você deve preencher os campos marcados"
       render :new, alert: flash.now[:alert]
     end
   end
