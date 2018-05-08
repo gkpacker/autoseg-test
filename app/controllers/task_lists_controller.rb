@@ -10,12 +10,12 @@ class TaskListsController < ApplicationController
 
   def new
     @task_list = TaskList.new
+    @task_list.tasks.build
   end
 
   def create
     @task_list = TaskList.new(task_list_params)
     @task_list.user = current_user
-
     if @task_list.save
       redirect_to @task_list
     else
@@ -24,12 +24,13 @@ class TaskListsController < ApplicationController
   end
 
   def edit
+    @task_list.tasks.build
   end
 
 
   def update
-    if @task_list.update_attributes(allowed_params)
-      redirect_to @task_list, notice: 'Successfully updated task_list'
+    if @task_list.update_attributes(task_list_params)
+      redirect_to @task_list
     else
       render :edit
     end

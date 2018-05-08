@@ -4,5 +4,5 @@ class Task < ApplicationRecord
 
   enum status: [ :pendant, :done ]
 
-  validates :title, presence: true
+  validates :title, presence: true, allow_blank: false
 end
