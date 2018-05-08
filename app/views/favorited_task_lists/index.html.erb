@@ -1,5 +1,28 @@
-<% @favorited_task_lists.each do |favorited_task_list| %>
-  <div class="task-list-container">
-
+<div class="grey-wrapper">
+  <div class="container">
+    <h1 class="text-center">Listas de tarefas favoritas</h1>
+    <div class="row">
+      <% @favorited_task_lists.each do |favorited_task_list| %>
+        <div class="col-md-3 col-sm-6">
+          <%= link_to task_list_path(favorited_task_list.task_list), class: 'task-list-card-link' do %>
+            <div class="task-list-card">
+              <div class="task-list-title text-center">
+                <%= favorited_task_list.title %>
+              </div>
+              <div class="task-list-stats">
+                <ul class="list-unstyled">
+                  <li>
+                    <%= favorited_task_list.task_list.tasks.count %> tarefas
+                  </li>
+                  <li>
+                    <%= favorited_task_list.task_list.tasks.where(status: 'done').count %> tarefas completas
+                  </li>
+                </ul>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
   </div>
-<% end %>
+</div>
