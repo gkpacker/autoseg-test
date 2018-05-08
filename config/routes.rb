@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root to: 'task_lists#index'
 
   devise_for :users
+  resource :users, only: :show
 
   resources :task_lists do
     get 'favorited_task_lists', to: 'favorited_task_lists#update_favorited_task_list'

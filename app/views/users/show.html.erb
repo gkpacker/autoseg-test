@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="title text-center">
+    <h1>Minhas listas de tarefas</h1>
+  </div>
+  <div class="wrapper">
+    <div class="row">
+      <div class="col-xs-12">
+        <h2>Privadas</h2>
+        <% @private_task_lists.each do |task_list| %>
+          <%= render 'shared/task_list_card', task_list: task_list %>
+        <% end %>
+      </div>
+
+      <div class="col-xs-12">
+        <h2>Públicas</h2>
+        <% @public_task_lists.each do |task_list| %>
+          <%= render 'shared/task_list_card', task_list: task_list %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
