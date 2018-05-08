@@ -6,8 +6,7 @@ class FavoritedTaskListsController < ApplicationController
   def create
     favorited = FavoritedTaskList.new(favorited_task_lists_params)
     favorited.user = current_user
-    favorited.title = favorited.task_list.title
-    redirect_to favorited if favorited.save
+    favorited.save
   end
 
   private

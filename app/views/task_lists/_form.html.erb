@@ -4,13 +4,20 @@
       <div class="form-container">
         <h3>Lista de tarefas</h3>
         <%= form_for @task_list do |f| %>
+          <div class="field task-list-title">
+            <%= f.text_field :title, placeholder: 'Título da lista de tarefas', class: 'form-control' %>
+          </div>
 
-          <div class="field">
-            <%= f.radio_button :status, "open" %>
-            <%= f.label :status, "Pública", value: "open"  %>
+          <div class="field task-list-content">
+            <div class="public">
+              <%= f.radio_button :status, "open" %>
+              <%= f.label :status, "Pública", value: "open"  %>
+            </div>
             <br>
-            <%= f.radio_button :status, "closed", checked: true %>
-            <%= f.label :status, "Privada", value: "closed" %>
+            <div class="private">
+              <%= f.radio_button :status, "closed", checked: true %>
+              <%= f.label :status, "Privada", value: "closed" %>
+            </div>
           </div>
 
           <div class="fields">

@@ -2,7 +2,8 @@ class TaskListsController < ApplicationController
   before_action :set_task_list, only: [:show, :edit, :update, :destroy]
 
   def index
-    @task_lists = TaskList.where(statu: 'open')
+    @task_lists = TaskList.where(status: 'open')
+    @favorited_task_list = FavoritedTaskList.new
   end
 
   def show
@@ -53,6 +54,6 @@ class TaskListsController < ApplicationController
   end
 
   def task_list_params
-    params.require(:task_list).permit(:user_id, :status, :task, tasks_attributes: [:id, :title, :task_list_id, :_destroy])
+    params.require(:task_list).permit(:user_id, :title, :status, :task, tasks_attributes: [:id, :title, :task_list_id, :_destroy])
   end
 end
