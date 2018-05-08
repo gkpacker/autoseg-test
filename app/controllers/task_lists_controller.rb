@@ -19,10 +19,6 @@ class TaskListsController < ApplicationController
     if @task_list.save
       redirect_to @task_list
     else
-      errors = []
-      @task_list.errors.messages.each do |message|
-        errors << message
-      end
       flash.now[:alert] = "Você deve nomear todas as tarefas"
       render :new, alert: flash.now[:alert]
     end
