@@ -1,20 +1,26 @@
 <div class="container">
 
   <div class="task-list-header text-center">
-    <h1><%= @task_list.title %></h1>
-    <%= @task_list.tasks.count %>
+    <h1>
+      <%= @task_list.title %>
+      <%= link_to '<span class="glyphicon glyphicon-edit" style="font-size: 30px;"></span>'.html_safe, edit_task_list_path(@task_list) %>
+    </h1>
   </div>
-
-
-  <% @task_list.tasks.each do |task| %>
-    <div class="task-card">
-      <div class="task-title">
-        <p><%= task.title %></p>
+  <div class="row">
+    <% @task_list.tasks.each do |task| %>
+      <div class="col-md-6 col-md-offset-3">
+        <div class="task">
+          <div class="task-title">
+            <p><%= task.title %></p>
+            <p><%= task.subtasks.count %></p>
+          </div>
+          <div class="task-links">
+            <%= task.status %>
+            <%= link_to '<span class="glyphicon glyphicon-ok"></span>'.html_safe, task_done_path(task) %>
+            <%= link_to '<span class="glyphicon glyphicon-trash"></span>'.html_safe, task_path(task), method: :delete %>
+          </div>
+        </div>
       </div>
-      <div class="task-links">
-        <%= link_to '<span class="glyphicon glyphicon-edit"></span>'.html_safe,edit_task_path(task) %>
-        <%= link_to '<span class="glyphicon glyphicon-trash"></span>'.html_safe, task_path(task), method: :delete %>
-      </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 </div>
