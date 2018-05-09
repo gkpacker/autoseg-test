@@ -7,7 +7,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   def favorited?(task_list)
-    FavoritedTaskList.where(user: self, task_list: task_list).present?
+    FavoritedTaskList.where(user_id: self.id, task_list_id: task_list.id).present?
   end
 
   def favorited_task_list(task_list)

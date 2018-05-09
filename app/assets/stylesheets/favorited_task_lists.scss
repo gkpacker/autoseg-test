@@ -13,30 +13,22 @@
   float: right;
   margin-right: 10px;
   margin-bottom: 10px;
-}
-
-
-.favorited_task_list-box .favorited i {
-  color: $red;
-  opacity: 1;
-  font-weight: bold;
-}
-
-.favorited_task_list-box i {
-  opacity: 0.6;
-  color: lightgrey;
-  font-weight: lighter;
-  &:hover {
-    opacity: 1;
+  i {
+    opacity: 0.6;
+    color: lightgrey;
+    font-weight: lighter;
+    &:hover {
+      opacity: 1;
+    }
   }
-}
-
-.favorited_task_list {
- .favorited i {
+  .favorited i {
     color: $red;
     opacity: 1;
     font-weight: bold;
   }
+}
+
+.favorited_task_list {
  i {
     opacity: 0.6;
     color: lightgrey;
@@ -44,5 +36,10 @@
     &:hover {
       opacity: 1;
     }
+  }
+ .favorited i {
+    color: red;
+    opacity: 1;
+    font-weight: bold;
   }
 }
