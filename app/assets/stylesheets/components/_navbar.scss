@@ -24,10 +24,12 @@
 .navbar-link {
   color: #616668;
   font-size: 14px;
+  padding-bottom: 10px;
 }
 .navbar-link:hover {
-  color: #da552f;
+  color: $blue;
   text-decoration: none;
+  border-bottom: 3px solid $blue;
 }
 
 .navbar:before, .navbar:after {

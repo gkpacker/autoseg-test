@@ -13,12 +13,6 @@ class TaskListPresenter < SimpleDelegator
     target == self || task_list.eql?(target)
   end
 
-  def edit
-    helpers.content_tag(:td, helpers.link_to(
-      '<span class="glyphicon glyphicon-edit" style="font-size: 30px;"></span>'.html_safe,
-      route(edit_task_list_path(@task_list)))) if @task_list.user == @current_user
-  end
-
   def task_status(task)
     task.done? ? 'Tarefa completa' : 'Tarefa pendente'
   end
