@@ -18,6 +18,9 @@
                     <%= favorited_task_list.task_list.tasks.where(status: 'done').count %> tarefas completas
                   </li>
                 </ul>
+                <div class="favorited_task_list-box">
+                  <%= link_to '<i class="glyphicon glyphicon-heart" aria-hidden="true" style="font-size: 20px;" ></i>'.html_safe, task_list_favorited_task_lists_path(favorited_task_list.task_list), remote: true, id: "favorited_task_list#{favorited_task_list.task_list.id}", class: "#{'favorited'if current_user.favorited?(favorited_task_list.task_list)}"  %>
+                </div>
               </div>
             </div>
           <% end %>
