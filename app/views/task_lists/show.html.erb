@@ -1,9 +1,8 @@
 <div class="container">
-
   <div class="task-list-header text-center">
     <h1>
       <%= @task_list.title %>
-      <%= @task_list.edit %>
+      <%= link_to '<span class="glyphicon glyphicon-edit" style="font-size: 30px;"></span>'.html_safe, edit_task_list_path(@task_list) if @task_list.user == @current_user %>
       <div class="favorited_task_list">
         <%= link_to '<i class="glyphicon glyphicon-heart" aria-hidden="true" style="font-size: 35px;" ></i>'.html_safe, task_list_favorited_task_lists_path(@task_list), remote: true, id: "favorited_task_list#{@task_list.id}", class: "#{'favorited' if current_user.favorited?(@task_list)}" %>
       </div>
@@ -12,14 +11,14 @@
   <div class="row">
     <% @task_list.tasks.each do |task| %>
       <div class="col-md-6 col-md-offset-3">
-        <div class="task">
+        <div class="task <%= 'task-done' if task.done? %>">
           <div class="task-title">
             <p><%= task.title %></p>
             <p><%= task.subtasks.count %></p>
           </div>
           <div class="task-links">
-            <%= task.status %>
-            <%= render @task_list.task_links, task: task %>
+            <%= @task_list.task_status(task) %>
+            <%= (render 'task_links', task: task) unless task.done? && @task_list.user == @current_user %>
           </div>
         </div>
       </div>

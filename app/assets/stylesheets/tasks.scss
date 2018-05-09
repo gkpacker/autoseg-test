@@ -1,6 +1,7 @@
 // Place all the styles related to the tasks controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
 .task {
   display: flex;
   border-radius: 3px;
@@ -10,7 +11,11 @@
   background-color: rgb(230,230,230);
   box-shadow: 2px 2px 2px rgb(200, 200, 200);
   padding: 5px 15px;
-  transition: all 0.2s ease;
+  transition: all 0.1s ease;
+  border-top: 5px solid rgba(180,180,180,0.8);
+  &:hover {
+    box-shadow: 4px 4px 4px rgb(200, 200, 200);
+  }
   .form-control {
     width: 80%;
   }
@@ -24,4 +29,8 @@
   .glyphicon-ok:hover {
       color: green;
   }
+}
+
+.task-done {
+  border-top: 5px solid green;
 }

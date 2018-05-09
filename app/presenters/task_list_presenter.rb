@@ -19,17 +19,13 @@ class TaskListPresenter < SimpleDelegator
       route(edit_task_list_path(@task_list)))) if @task_list.user == @current_user
   end
 
-  def task_links
-    @task_list.user == @current_user ? 'owned_task' : 'not_owned_task'
+  def task_status(task)
+    task.done? ? 'Tarefa completa' : 'Tarefa pendente'
   end
 
   private
 
   def helpers
     ApplicationController.helpers
-  end
-
-  def route(path)
-    Rails.application.routes.recognize_path(path)[:controller]
   end
 end
