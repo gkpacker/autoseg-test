@@ -1,0 +1,24 @@
+<div class="container text-center">
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <div class="form-container">
+        <h3>Lista de tarefas</h3>
+        <%= form_for @task do |f| %>
+          <div class="field task-list-title">
+            <%= f.text_field :title, placeholder: 'Título da tarefa', class: 'form-control' %>
+          </div>
+          <div class="fields">
+            <%= f.fields_for :subtasks do |t| %>
+              <%= render 'subtask', f: t %>
+            <% end %>
+          </div>
+
+          <div class="actions">
+            <%= link_to_add_row('Adicionar subtarefa', f, :subtasks, class: 'btn btn-primary margin-btn btn-block') %>
+            <%= f.submit class: 'btn btn-block btn-primary' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
