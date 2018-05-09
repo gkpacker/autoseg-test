@@ -30,3 +30,19 @@
     opacity: 1;
   }
 }
+
+.favorited_task_list {
+ .favorited i {
+    color: $red;
+    opacity: 1;
+    font-weight: bold;
+  }
+ i {
+    opacity: 0.6;
+    color: lightgrey;
+    font-weight: lighter;
+    &:hover {
+      opacity: 1;
+    }
+  }
+}

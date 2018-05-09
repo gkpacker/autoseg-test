@@ -3,7 +3,10 @@
   <div class="task-list-header text-center">
     <h1>
       <%= @task_list.title %>
-      <%= link_to '<span class="glyphicon glyphicon-edit" style="font-size: 30px;"></span>'.html_safe, edit_task_list_path(@task_list) %>
+      <%= @task_list.edit %>
+      <div class="favorited_task_list">
+        <%= link_to '<i class="glyphicon glyphicon-heart" aria-hidden="true" style="font-size: 35px;" ></i>'.html_safe, task_list_favorited_task_lists_path(@task_list), remote: true, id: "favorited_task_list#{@task_list.id}", class: "#{'favorited'if current_user.favorited?(@task_list)}"  %>
+      </div>
     </h1>
   </div>
   <div class="row">
@@ -16,8 +19,7 @@
           </div>
           <div class="task-links">
             <%= task.status %>
-            <%= link_to '<span class="glyphicon glyphicon-ok"></span>'.html_safe, task_done_path(task) %>
-            <%= link_to '<span class="glyphicon glyphicon-trash"></span>'.html_safe, task_path(task), method: :delete %>
+            <%= render @task_list.task_links, task: task %>
           </div>
         </div>
       </div>

@@ -6,6 +6,7 @@ class TaskListsController < ApplicationController
   end
 
   def show
+    @task_list = TaskListPresenter.new(@task_list, current_user)
   end
 
   def new
