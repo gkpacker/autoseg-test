@@ -12,6 +12,7 @@ class Task < ApplicationRecord
     subtasks.each do |subtask|
       return false if subtask.pendant?
     end
+    true
   end
 
   def mark_subtasks

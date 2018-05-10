@@ -20,7 +20,7 @@ RSpec.describe Task, type: :model do
     expect(Task.new(title: "new task", task_list_id: task_list.id)).to be_valid
   end
 
-  it "should set 'done' to false when creating a new task" do
+  it "set 'done' to false when creating a new task" do
     user = User.create!(email: "test@test.com", password: "123456")
     task_list = TaskList.create!(user_id: user.id, title: 'test')
     task = Task.create!(title: "new task", task_list_id: task_list.id)
@@ -28,7 +28,7 @@ RSpec.describe Task, type: :model do
     expect(task.done?).to eq false
   end
 
-  it "should change task 'done' status to true" do
+  it "change task 'done' status to true" do
     user = User.create!(email: "test@test.com", password: "123456")
     task_list = TaskList.create!(user_id: user.id, title: 'test')
     task = Task.create!(title: "new task", task_list_id: task_list.id)
@@ -37,4 +37,23 @@ RSpec.describe Task, type: :model do
     expect(task.done?).to eq true
   end
 
+  it "return true if all subtasks are done" do
+    user = User.create!(email: "test@test.com", password: "123456")
+    task_list = TaskList.create!(user_id: user.id, title: 'test')
+    task = Task.create!(title: "new task", task_list_id: task_list.id)
+    subtask1 = Subtask.create!(title: "new task", task_id: task.id, status: 'done')
+    subtask2 = Subtask.create!(title: "new task2", task_id: task.id, status: 'done')
+
+    expect(task.all_subtasks_done?).to eq true
+  end
+
+  it "return false if one or more subtask is pendant" do
+    user = User.create!(email: "test@test.com", password: "123456")
+    task_list = TaskList.create!(user_id: user.id, title: 'test')
+    task = Task.create!(title: "new task", task_list_id: task_list.id)
+    subtask1 = Subtask.create!(title: "new task", task_id: task.id, status: 'done')
+    subtask2 = Subtask.create!(title: "new task2", task_id: task.id)
+
+    expect(task.all_subtasks_done?).to eq false
+  end
 end
