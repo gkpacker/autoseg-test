@@ -6,7 +6,9 @@ class TasksController < ApplicationController
   end
 
   def update
+    subtasks = @task.subtasks.count
     if @task.update_attributes(task_params)
+      @task.pendant! unless subtasks == @task.subtasks.count
       redirect_to @task.task_list
     else
       @task.subtasks.build
@@ -16,27 +18,16 @@ class TasksController < ApplicationController
 
   def done
     @task.done!
-    subtasks_done(@task)
+    @task.mark_subtasks
     redirect_to @task.task_list
-  end
-
-  def subtasks_done(task)
-    task.subtasks.each do |subtask|
-      subtask.done!
-    end
   end
 
   def pendant
     @task.pendant!
-    subtasks_pendant(@task)
+    @task.unmark_subtasks
     redirect_to @task.task_list
   end
 
-  def subtasks_pendant(task)
-    task.subtasks.each do |subtask|
-      subtask.pendant!
-    end
-  end
 
   def destroy
     task_list = @task.task_list

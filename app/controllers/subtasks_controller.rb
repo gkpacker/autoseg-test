@@ -3,21 +3,17 @@ class SubtasksController < ApplicationController
 
   def destroy
     tasklist = @subtask.task.task_list
+    task = @subtask.task
     @subtask.destroy
+    task.done! if task.all_subtasks_done?
     redirect_to tasklist
   end
 
   def done
     @subtask.done!
     task = @subtask.task
-    task.done! if all_subtasks_done?(task)
+    task.done! if task.all_subtasks_done?
     redirect_to @subtask.task.task_list
-  end
-
-  def all_subtasks_done?(task)
-    task.subtasks.each do |subtask|
-      return false unless subtask.done?
-    end
   end
 
   def pendant
