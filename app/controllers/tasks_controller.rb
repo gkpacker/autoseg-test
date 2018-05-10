@@ -16,7 +16,14 @@ class TasksController < ApplicationController
 
   def done
     @task.done!
+    subtasks_done(@task)
     redirect_to @task.task_list
+  end
+
+  def subtasks_done(task)
+    task.subtasks.each do |subtask|
+      subtask.done!
+    end
   end
 
   def destroy
