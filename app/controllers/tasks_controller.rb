@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:edit, :update, :done, :destroy]
+  before_action :set_task, only: [:edit, :update, :done, :destroy, :pendant]
 
   def edit
     @task.subtasks.build
@@ -23,6 +23,18 @@ class TasksController < ApplicationController
   def subtasks_done(task)
     task.subtasks.each do |subtask|
       subtask.done!
+    end
+  end
+
+  def pendant
+    @task.pendant!
+    subtasks_pendant(@task)
+    redirect_to @task.task_list
+  end
+
+  def subtasks_pendant(task)
+    task.subtasks.each do |subtask|
+      subtask.pendant!
     end
   end
 

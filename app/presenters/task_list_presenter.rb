@@ -13,12 +13,12 @@ class TaskListPresenter < SimpleDelegator
     target == self || task_list.eql?(target)
   end
 
-  def task_status(task)
-    'Tarefa completa' if task.done?
+  def subtask_links(subtask)
+    subtask.done? ? 'subtask_done_links' : 'subtask_pendant_links'
   end
 
-  def subtask_status(subtask)
-    'Subtarefa completa' if subtask.done?
+  def task_links(task)
+    task.done? ? 'task_done_links' : 'task_pendant_links'
   end
 
   private

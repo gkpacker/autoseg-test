@@ -1,5 +1,5 @@
 class SubtasksController < ApplicationController
-  before_action :set_subtask
+  before_action :set_subtask, only: [:destroy, :done, :pendant]
 
   def destroy
     tasklist = @subtask.task.task_list
@@ -9,7 +9,8 @@ class SubtasksController < ApplicationController
 
   def done
     @subtask.done!
-    @subtask.task.done! if all_subtasks_done?(task)
+    task = @subtask.task
+    task.done! if all_subtasks_done?(task)
     redirect_to @subtask.task.task_list
   end
 
@@ -17,6 +18,12 @@ class SubtasksController < ApplicationController
     task.subtasks.each do |subtask|
       return false unless subtask.done?
     end
+  end
+
+  def pendant
+    @subtask.pendant!
+    @subtask.task.pendant!
+    redirect_to @subtask.task.task_list
   end
 
   private

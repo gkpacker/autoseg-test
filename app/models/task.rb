@@ -1,6 +1,6 @@
 class Task < ApplicationRecord
   belongs_to :task_list, inverse_of: :tasks, optional: true
-  has_many :subtasks, inverse_of: :task
+  has_many :subtasks, inverse_of: :task, dependent: :destroy
 
   enum status: [ :pendant, :done ]
 
