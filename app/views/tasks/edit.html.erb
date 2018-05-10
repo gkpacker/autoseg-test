@@ -7,6 +7,7 @@
           <div class="field task-list-title">
             <%= f.text_field :title, placeholder: 'Título da tarefa', class: 'form-control' %>
           </div>
+
           <div class="fields">
             <%= f.fields_for :subtasks do |t| %>
               <%= render 'subtask', f: t %>

@@ -12,5 +12,4 @@ Rails.application.routes.draw do
     get 'done', to: 'tasks#done'
     resources :subtasks, only: [:new, :create, :edit, :update, :destroy]
   end
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
