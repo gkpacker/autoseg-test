@@ -1,5 +1,5 @@
 <div class="task">
   <%= f.hidden_field :_destroy, as: :hidden %>
-  <%= f.text_field :title %>
+  <%= f.text_field :title, placeholder: 'Título da subtarefa', class: 'form-control' %>
   <%= link_to '<span class="glyphicon glyphicon-trash"></span>'.html_safe, '#', class: 'remove-task' %>
 </div>
