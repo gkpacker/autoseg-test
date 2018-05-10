@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe TaskList, type: :model do
+
   it "its not valid without a user assigned" do
     expect(TaskList.new).to_not be_valid
   end

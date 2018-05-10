@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Subtask, type: :model do
-
   it "its not valid without a task assigned" do
     expect(Subtask.new(title: 'new subtask')).to_not be_valid
   end
@@ -41,5 +40,4 @@ RSpec.describe Subtask, type: :model do
 
     expect(subtask.done?).to eq true
   end
-
 end
