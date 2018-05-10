@@ -2,13 +2,14 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:edit, :update, :done, :destroy]
 
   def edit
+    @task.subtasks.build
   end
 
   def update
     if @task.update_attributes(task_params)
       redirect_to @task.task_list
     else
-      @task.tasks.build
+      @task.subtasks.build
       render :edit
     end
   end
@@ -32,6 +33,6 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:title, :task_list_id, subtasks_attributes: [:_destroy, :title])
+    params.require(:task).permit(:title, :task_list_id, subtasks_attributes: [:id, :task_id, :_destroy, :title])
   end
 end

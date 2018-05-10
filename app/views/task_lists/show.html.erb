@@ -8,20 +8,34 @@
       </div>
     </h1>
   </div>
-  <div class="row">
-    <% @task_list.tasks.each do |task| %>
-      <div class="col-md-6 col-md-offset-3">
-        <div class="task <%= 'task-done' if task.done? %>">
-          <div class="task-title">
-            <p><%= task.title %></p>
-            <p><%= task.subtasks.count %></p>
-          </div>
-          <div class="task-links">
-            <%= @task_list.task_status(task) %>
-            <%= (render 'task_links', task: task) unless task.done? && @task_list.user == @current_user %>
+  <div class="tasks-wrapper">
+    <div class="row">
+      <% @task_list.tasks.each do |task| %>
+        <div class="col-md-6 col-md-offset-3">
+          <div class="task-wrapper">
+            <div class="task <%= 'task-done' if task.done? %>">
+              <div class="task-title">
+                <p><%= task.title %></p>
+              </div>
+              <div class="task-links">
+                <%= @task_list.task_status(task) %>
+                <%= (render 'task_links', task: task) if !task.done? && @task_list.user == current_user %>
+              </div>
+            </div>
+            <% task.subtasks.each do |subtask| %>
+              <div class="subtask <%= "#{'subtask-done' if subtask.done?}" %>">
+                <div class="task-title">
+                  <p><%= subtask.title %></p>
+                </div>
+                <div class="subtask-links">
+                  <%= @task_list.subtask_status(subtask) %>
+                  <%= (render 'subtask_links', subtask: subtask) if !subtask.done? && @task_list.user == current_user %>
+                </div>
+              </div>
+            <% end %>
           </div>
         </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
 </div>

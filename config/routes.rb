@@ -12,4 +12,7 @@ Rails.application.routes.draw do
     get 'done', to: 'tasks#done'
     resources :subtasks, only: [:new, :create, :edit, :update, :destroy]
   end
+  resources :subtasks, only: :destroy do
+    get 'done', to: 'subtasks#done'
+  end
 end

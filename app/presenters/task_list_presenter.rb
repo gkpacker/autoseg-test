@@ -14,7 +14,11 @@ class TaskListPresenter < SimpleDelegator
   end
 
   def task_status(task)
-    task.done? ? 'Tarefa completa' : 'Tarefa pendente'
+    'Tarefa completa' if task.done?
+  end
+
+  def subtask_status(subtask)
+    'Subtarefa completa' if subtask.done?
   end
 
   private

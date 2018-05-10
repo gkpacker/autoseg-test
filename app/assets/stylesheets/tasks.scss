@@ -9,28 +9,40 @@
   justify-content: space-between;
   margin: 10px 0px;
   background-color: rgb(230,230,230);
-  box-shadow: 2px 2px 2px rgb(200, 200, 200);
   padding: 5px 15px;
   transition: all 0.1s ease;
   border-top: 5px solid rgba(180,180,180,0.8);
-  &:hover {
-    box-shadow: 4px 4px 4px rgb(200, 200, 200);
-  }
   .form-control {
     width: 80%;
   }
-  .glyphicon {
-    margin-right: 13px;
-    color: rgb(200, 200, 200);
-  }
-  .glyphicon-trash:hover {
-      color: red;
-  }
-  .glyphicon-ok:hover {
-      color: green;
-  }
+}
+
+.glyphicon {
+  margin-right: 13px;
+  color: rgb(200, 200, 200);
+}
+
+.glyphicon-trash:hover {
+    color: red;
+}
+.glyphicon-ok:hover {
+    color: green;
 }
 
 .task-done {
   border-top: 5px solid green;
+}
+
+.task-wrapper {
+  background-color: rgb(230,230,230);
+  box-shadow: 2px 2px 2px rgb(200, 200, 200);
+  border-radius: 3px;
+  padding-bottom: 10px;
+  &:hover {
+    box-shadow: 4px 4px 4px rgb(200, 200, 200);
+  }
+}
+
+.tasks-wrapper {
+  margin-bottom: 100px;
 }

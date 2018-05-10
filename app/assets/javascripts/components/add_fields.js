@@ -1,8 +1,8 @@
 $(document).on('turbolinks:load', function() {
   $('form').on('click', '.remove-task', function(event) {
     event.preventDefault();
-    $(this).prev('input[type=hidden]').val('1');
-    $(this).parent().remove();
+    $(this).parent().find('input[type=hidden]').val('1');
+    $(this).parent().hide();
   });
 
   $('form').on('click', '.add_fields', function(event) {

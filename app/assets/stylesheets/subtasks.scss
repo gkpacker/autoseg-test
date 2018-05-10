@@ -1,3 +1,18 @@
 // Place all the styles related to the subtasks controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.subtask {
+  background-color: white;
+  margin: 10px 25px;
+  display: flex;
+  border-radius: 3px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 15px;
+  transition: all 0.1s ease;
+  border-top: 5px solid rgba(180,180,180,0.8);
+}
+
+.subtask-done {
+  border-top: 5px solid green;
+}
