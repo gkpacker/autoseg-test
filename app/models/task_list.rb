@@ -10,24 +10,17 @@ class TaskList < ApplicationRecord
 
   after_update :broadcast_notification
 
-
   def broadcast_notification
     ActionCable.server.broadcast("notifications", {
       notification_partial: ApplicationController.renderer.render(
         partial: "task_lists/notifications",
         locals: { task_list: self }
       ),
-      task_list: self,
       users_who_favorited: users_who_favorited
     })
   end
 
   def users_who_favorited
-    users = []
-    FavoritedTaskList.where(task_list: self).each do |favorited_task_list|
-      users << favorited_task_list.user.id
-    end
-    users
+    FavoritedTaskList.where(task_list: self).map(&:user_id)
   end
-
 end

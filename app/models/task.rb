@@ -8,22 +8,27 @@ class Task < ApplicationRecord
 
   validates :title, presence: true, allow_blank: false
 
+  after_update :broadcast_notification
+
+  def broadcast_notification
+    ActionCable.server.broadcast("notifications", {
+      notification_partial: ApplicationController.renderer.render(
+        partial: "task_lists/notifications",
+        locals: { task_list: task_list }
+      ),
+      users_who_favorited: task_list.users_who_favorited
+    })
+  end
+
   def all_subtasks_done?
-    subtasks.each do |subtask|
-      return false if subtask.pendant?
-    end
-    true
+    subtasks.select(&:pendant?).empty?
   end
 
   def mark_subtasks
-    subtasks.each do |subtask|
-      subtask.done!
-    end
+    subtasks.map(&:done!)
   end
 
   def unmark_subtasks
-    subtasks.each do |subtask|
-      subtask.pendant!
-    end
+    subtasks.map(&:pendant!)
   end
 end

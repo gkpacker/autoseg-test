@@ -22,11 +22,11 @@
     box-shadow: 3px 3px 3px rgb(200, 200, 200);
   }
 }
-.task-list-card-link {
-  &:hover {
-    text-decoration: none;
-  }
+
+.task-list-card-link:hover {
+  text-decoration: none;
 }
+
 .form-container {
   .task-list-title {
     display: flex;

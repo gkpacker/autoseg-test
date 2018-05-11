@@ -43,7 +43,6 @@ RSpec.describe Task, type: :model do
     task = Task.create!(title: "new task", task_list_id: task_list.id)
     subtask1 = Subtask.create!(title: "new task", task_id: task.id, status: 'done')
     subtask2 = Subtask.create!(title: "new task2", task_id: task.id, status: 'done')
-
     expect(task.all_subtasks_done?).to eq true
   end
 

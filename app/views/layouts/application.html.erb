@@ -21,11 +21,11 @@
       App['notifications'] = App.cable.subscriptions.create(
         { channel: 'FavoritedChannel' },
         { received: (data) => {
-          if (data.users_who_favorited.includes(<%= current_user.id %>)) {
-            $('.notifications').append(data.notification_partial);
-            setTimeout(() => {
-              $('.notifications').hide("slow");
-            }, 5000);
+            if (data.users_who_favorited.includes(<%= current_user.id if user_signed_in? %>)) {
+              $('.notifications').append(data.notification_partial);
+              setTimeout(() => {
+                $('.notification-remove-tag').remove();
+              }, 5000);
             }
           }
         }

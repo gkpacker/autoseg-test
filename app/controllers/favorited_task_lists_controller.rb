@@ -7,13 +7,10 @@ class FavoritedTaskListsController < ApplicationController
 
   def update_favorited_task_list
     @favorited_task_list = current_user.favorited_task_list(@task_list)
-    if @favorited_task_list
-      @favorited_task_list.destroy
-    else
-      @favorited_task_list = FavoritedTaskList.new(task_list: @task_list)
-      @favorited_task_list.user = current_user
-      @favorited_task_list.save
-    end
+    return @favorited_task_list.destroy if @favorited_task_list
+    @favorited_task_list = FavoritedTaskList.new(task_list: @task_list)
+    @favorited_task_list.user = current_user
+    @favorited_task_list.save
   end
 
   private
