@@ -1,5 +1,7 @@
 <div class="navbar">
-  <%= link_to "Todolist", root_path, class: 'navbar-brand' %>
+  <%= link_to root_path, class: 'navbar-brand' do %>
+    <%= image_tag 'task_list', width: 40 %>
+  <% end %>
   <div class="navbar-right">
     <% if user_signed_in? %>
       <%= link_to 'Nova lista de tarefas', new_task_list_path, class: "navbar-item navbar-link" %>
