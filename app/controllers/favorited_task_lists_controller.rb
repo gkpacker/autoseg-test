@@ -2,7 +2,7 @@ class FavoritedTaskListsController < ApplicationController
   before_action :set_task_list, only: :update_favorited_task_list
 
   def index
-    @favorited_task_lists = FavoritedTaskList.where(user_id: current_user.id)
+    @favorited_task_lists = FavoritedTaskList.includes(:task_list).where(user_id: current_user.id)
   end
 
   def update_favorited_task_list
@@ -16,6 +16,6 @@ class FavoritedTaskListsController < ApplicationController
   private
 
   def set_task_list
-    @task_list = TaskList.find(params[:task_list_id])
+    @task_list = TaskList.includes(:user, tasks: :subtasks).find(params[:task_list_id])
   end
 end

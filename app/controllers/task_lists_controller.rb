@@ -18,7 +18,7 @@ class TaskListsController < ApplicationController
     @task_list = TaskList.new(task_list_params)
     @task_list.user = current_user
     if @task_list.save
-      redirect_to @task_list
+      respond_with @task_list, location: @task_list
     else
       flash.now[:alert] = "Você deve preencher os campos marcados"
       render :new, alert: flash.now[:alert]
@@ -31,7 +31,7 @@ class TaskListsController < ApplicationController
 
   def update
     if @task_list.update_attributes(task_list_params)
-      redirect_to @task_list
+      respond_with @task_list, location: @task_list
     else
       @task_list.tasks.build
       render :edit
@@ -40,13 +40,13 @@ class TaskListsController < ApplicationController
 
   def destroy
     @task_list.destroy
-    redirect_to root_path
+    respond_with @task_list, location: root_path
   end
 
   private
 
   def set_task_list
-    @task_list = TaskList.find(params[:id])
+    @task_list = TaskList.includes(:tasks, tasks: :subtasks).find(params[:id])
   end
 
   def task_list_params
