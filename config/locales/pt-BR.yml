@@ -150,6 +150,14 @@ pt-BR:
       create: Criar %{model}
       submit: Salvar %{model}
       update: Atualizar %{model}
+      task_list:
+        create: Criar lista de tarefas
+        submit: Salvar lista de tarefas
+        update: Atualizar lista de tarefas
+      task:
+        create: Criar tarefa
+        submit: Salvar tarefa
+        update: Atualizar tarefa
   number:
     currency:
       format:
