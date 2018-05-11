@@ -21,7 +21,7 @@ RSpec.describe Subtask, type: :model do
     expect(Subtask.new(title: 'new subtask', task_id: task.id)).to be_valid
   end
 
-  it "should set 'done' to false when creating a new subtask" do
+  it "set 'done' to false when creating a new subtask" do
     user = User.create!(email: 'test@test.com', password: '123456')
     task_list = TaskList.create!(user_id: user.id, title: 'test')
     task = Task.create!(title: 'new task', task_list_id: task_list.id)
@@ -30,7 +30,7 @@ RSpec.describe Subtask, type: :model do
     expect(subtask.done?).to eq false
   end
 
-  it "should change subtask 'done' status to true" do
+  it "change subtask 'done' status to true" do
     user = User.create!(email: 'test@test.com', password: '123456')
     task_list = TaskList.create!(user_id: user.id, title: 'test')
     task = Task.create!(title: 'new task', task_list_id: task_list.id)
