@@ -6,7 +6,7 @@ class SubtasksController < ApplicationController
     task = @subtask.task
     @subtask.destroy
     task.done! if task.all_subtasks_done?
-    redirect_to tasklist
+    respond_with @subtask, location: tasklist
   end
 
   def done

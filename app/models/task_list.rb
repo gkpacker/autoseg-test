@@ -1,6 +1,7 @@
 class TaskList < ApplicationRecord
   belongs_to :user
   has_many :tasks, inverse_of: :task_list, dependent: :destroy
+  has_many :favorited_task_lists, dependent: :destroy
 
   enum status: [ :closed, :open ]
 

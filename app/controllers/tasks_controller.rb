@@ -9,7 +9,7 @@ class TasksController < ApplicationController
     subtasks = @task.subtasks.count
     if @task.update_attributes(task_params)
       @task.pendant! unless subtasks == @task.subtasks.count
-      redirect_to @task.task_list
+      respond_with @task, location: @task.task_list
     else
       @task.subtasks.build
       render :edit
@@ -32,7 +32,7 @@ class TasksController < ApplicationController
   def destroy
     task_list = @task.task_list
     @task.destroy
-    redirect_to task_list
+    respond_with @task, location: @task.task_list
   end
 
   private
