@@ -45,6 +45,10 @@ class TaskListsController < ApplicationController
 
   private
 
+  def flash_interpolation_options
+    { resource_name: @task_list.title }
+  end
+
   def set_task_list
     @task_list = TaskList.includes(:tasks, tasks: :subtasks).find(params[:id])
   end

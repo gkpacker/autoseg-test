@@ -26,7 +26,7 @@ RSpec.describe 'Task List Status', type: :feature do
         find('.form-control').set task
       end
     end
-    click_on 'Create Task list'
+    click_on 'Criar Task list'
 
     visit '/'
 
@@ -53,7 +53,7 @@ RSpec.describe 'Task List Status', type: :feature do
         find('.form-control').set task
       end
     end
-    click_on 'Create Task list'
+    click_on 'Criar Task list'
 
     visit '/'
 

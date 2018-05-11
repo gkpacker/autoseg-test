@@ -37,6 +37,10 @@ class TasksController < ApplicationController
 
   private
 
+  def flash_interpolation_options
+    { resource_name: @task.title }
+  end
+
   def set_task
     id = params[:id] || params[:task_id]
     @task = Task.find(id)

@@ -24,6 +24,10 @@ class SubtasksController < ApplicationController
 
   private
 
+  def flash_interpolation_options
+    { resource_name: @subtask.title }
+  end
+
   def set_subtask
     id = params[:id] || params[:subtask_id]
     @subtask = Subtask.find(id)
