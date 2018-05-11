@@ -25,7 +25,20 @@
 .glyphicon-trash:hover {
     color: red;
 }
-.glyphicon-ok:hover {
+
+.glyphicon-unchecked:hover {
+    color: red;
+}
+
+.glyphicon-plus:hover {
+    color: green;
+}
+
+.glyphicon-edit:hover {
+    color: rgb(180, 180, 180);
+}
+
+.glyphicon-check:hover {
     color: green;
 }
 

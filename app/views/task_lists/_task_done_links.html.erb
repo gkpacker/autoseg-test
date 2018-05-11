@@ -1,3 +1,3 @@
-<%= link_to '<span class="glyphicon glyphicon-remove"></span>'.html_safe, task_pendant_path(task) %>
-<%= link_to '<span class="glyphicon glyphicon-edit"></span>'.html_safe, edit_task_path(task) %>
+<%= link_to '<span class="glyphicon glyphicon-unchecked"></span>'.html_safe, task_pendant_path(task) %>
+<%= link_to '<span class="glyphicon glyphicon-plus"></span>'.html_safe, edit_task_path(task) %>
 <%= link_to '<span class="glyphicon glyphicon-trash""></span>'.html_safe, task_path(task), method: :delete %>

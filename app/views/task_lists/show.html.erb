@@ -3,9 +3,9 @@
     <h1>
       <%= @task_list.title %>
       <%= link_to '<span class="glyphicon glyphicon-edit" style="font-size: 30px;"></span>'.html_safe, edit_task_list_path(@task_list) if @task_list.user == @current_user %>
-      <div class="favorited_task_list">
+      <%= link_to '<span class="glyphicon glyphicon-plus" style="font-size: 30px;"></span>'.html_safe, edit_task_list_path(@task_list) if @task_list.user == @current_user %>
+      <%= link_to '<span class="glyphicon glyphicon-trash" style="font-size: 30px;"></span>'.html_safe, task_list_path(@task_list), method: :delete if @task_list.user == @current_user %>
         <%= link_to '<i class="glyphicon glyphicon-heart" aria-hidden="true" style="font-size: 35px;" ></i>'.html_safe, task_list_favorited_task_lists_path(@task_list), remote: true, id: "favorited_task_list#{@task_list.id}", class: "#{'favorited' if current_user.favorited?(@task_list)}" %>
-      </div>
     </h1>
   </div>
   <div class="tasks-wrapper">
